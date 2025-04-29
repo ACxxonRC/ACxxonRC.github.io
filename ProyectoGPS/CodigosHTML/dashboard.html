@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoMind - Dashboard</title>
+  <link rel="stylesheet" href="/CodigosCSS/dashboard.css" />
+  <link rel="stylesheet" href="/CodigosJS/scripts.js">
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <div class="perfil-box">
+      <img src="img/perfil.png" alt="Perfil" class="avatar">
+      <span id="nombre-usuario">Perfil</span>
+    </div>
+    <ul class="menu-list">
+      <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
+      <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
+      <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
+      <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Atención al usuario</li>
+      <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
+    </ul>
+  </div>
+
+  <div class="menu-top">
+    <span class="menu-icon" onclick="toggleSidebar()">☰</span>
+    <div class="logo-placeholder"></div>
+  </div>
+
+  <div class="dashboard">
+    <div class="puntos" id="puntos">1300pts</div>
+    <div class="puntos-label">Puntos Totales</div>
+
+    <div class="icon-grid">
+      <div class="icon-btn"><img src="/imagenes/imgInsignias/bote.png" alt="Medalla" /></div>
+      <div class="icon-btn"><img src="/imagenes/imgInsignias/centro.png" alt="Contenedor" /></div>
+      <div class="icon-btn"><img src="/imagenes/imgInsignias/evento.png" alt="Puntos" /></div>
+      <div class="icon-btn"><img src="/imagenes/imgInsignias/recompensa.png" alt="Planta" /></div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    function cerrarSidebar() {
+      document.getElementById('sidebar').classList.remove('active');
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem('usuarioLogueado');
+      window.location.href = "/CodigosHTML/index.html";
+    }
+
+    // Redirección si no hay usuario logueado
+    const user = localStorage.getItem('usuarioLogueado');
+    if (!user) {
+      window.location.href = "login.html";
+    } else {
+      const datosUsuario = JSON.parse(user);
+      if (datosUsuario && datosUsuario.usuario) {
+        const perfilSpan = document.getElementById('nombre-usuario');
+        perfilSpan.textContent = datosUsuario.usuario;
+      }
+    }
+
+    // Cierra el menú al hacer clic fuera
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const menuIcon = document.querySelector('.menu-icon');
+      if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    // Manejar clics en cada opción del menú
+    const opcionesMenu = document.querySelectorAll('.menu-list li');
+    opcionesMenu.forEach(opcion => {
+      opcion.addEventListener('click', function () {
+        cerrarSidebar();
+        const texto = this.innerText.trim();
+        
+        if (texto.includes('Mapa Contenedores')) {
+          window.location.href = "/menu/mapa.html";
+        } else if (texto.includes('Recompensas')) {
+          window.location.href = "/menu/recompensas.html";
+        } else if (texto.includes('Escanear Código')) {
+          window.location.href = "/menu/escanear.html";
+        } else if (texto.includes('Atención al usuario')) {
+          window.location.href = "/menu/soporte.html";
+        } else if (texto.includes('Acerca de nosotros')) {
+          window.location.href = "/menu/acerca.html";
+        } else if (texto.includes('Cerrar sesión')) {
+          cerrarSesion();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
