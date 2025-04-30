@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoMind - Registro</title>
+  <link rel="stylesheet" href="/CodigosCSS/formulario.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="/imagenes/logo.png" alt="EcoMind Logo" class="logo" />
+
+    <div class="form-box">
+      <h2>Bienvenido a EcoMind</h2>
+
+      <div class="toggle-buttons">
+        <button class="inactive" onclick="irALogin()">Iniciar</button>
+        <button class="active">Registrar</button>
+      </div>
+
+      <form id="formRegistro">
+        <input type="text" id="usuario" placeholder="Usuario" required />
+        <input type="password" id="contrasena" placeholder="Contraseña" required />
+        <button type="submit" class="btn-submit">Registrar</button>
+      </form>
+
+      <p class="texto-link">¿Ya eres usuario? <a href="login.html">Inicia sesión</a></p>
+    </div>
+  </div>
+
+  <script>
+    function irALogin() {
+      window.location.href = "login.html";
+    }
+
+    document.getElementById('formRegistro').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const user = document.getElementById('usuario').value.trim();
+      const pass = document.getElementById('contrasena').value.trim();
+
+      let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+      if (usuarios.find(u => u.user === user)) {
+        alert('Este usuario ya existe. Intenta con otro.');
+        return;
+      }
+
+      usuarios.push({ user, pass });
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+      // CORREGIDO: guardar usuario actual
+      localStorage.setItem('usuarioLogueado', JSON.stringify({ usuario: user }));
+
+      alert('¡Usuario registrado con éxito!');
+      window.location.href = "dashboard.html";
+    });
+  </script>
+</body>
+</html>

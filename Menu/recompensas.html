@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recompensas Ecomind</title>
+    <link rel="stylesheet" href="/CodigosCSS/recompensas.css">
+    <link rel="stylesheet" href="/CodigosCSS/recompensas.css"> </head>
+
+<body>
+    <div class="container">
+        <div class="rewards-list" id="rewardsList">
+            <div class="reward-item" data-title="2x1 en conos sencillos"
+                data-description="Disfruta de 2 conos sencillos al precio de 1. ¡Una dulce oportunidad!"
+                data-image="/imagenes/Cupones/mac.png" data-logo="/imagenes/Cupones/mac.png">
+                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
+                    <img src="/imagenes/Cupones/mac.png" alt="Logo McDonald's" class="company-logo">
+                </div>
+            </div>
+            <div class="reward-item" data-title="10$ de Descuento"
+                data-description="Ahorra 10$ en tu próxima compra en Starbucks. ¡Tu café favorito con descuento!"
+                data-image="cupon_starbucks.png" data-logo="/imagenes/logos/starbucks_logo_small.png">
+                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
+                    <img src="/imagenes/Cupones/star.png" alt="Logo Starbucks" class="company-logo">
+                </div>
+            </div>
+            <div class="reward-item" data-title="10% De Descuento"
+                data-description="Obtén un 10% de descuento en tus productos favoritos en Walmart. ¡Ahorra en grande!"
+                data-image="cupon_walmart_10.png" data-logo="/imagenes/logos/walmart_logo_small.png">
+                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
+                    <img src="/imagenes/Cupones/walt.png" alt="Logo Walmart" class="company-logo">
+                </div>
+            </div>
+            <div class="reward-item" data-title="5% De Descuento"
+                data-description="Llévate un 5% de descuento en la increíble tecnología de Samsung. ¡Innovación a mejor precio!"
+                data-image="cupon_samsung.png" data-logo="/imagenes/logos/samsung_logo_small.png">
+                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
+                    <img src="/imagenes/Cupones/samsus.png" alt="Logo Samsung" class="company-logo">
+                </div>
+            </div>
+            <div class="reward-item" data-title="100$ de descuento"
+                data-description="¡Increíble! 100$ de descuento en tu próxima compra en Walmart. ¡No te lo pierdas!"
+                data-image="cupon_walmart_100.png" data-logo="/imagenes/logos/walmart_logo_small.png">
+                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
+                    <img src="/imagenes/Cupones/walt.png" alt="Logo Walmart" class="company-logo">
+                </div>
+            </div>
+        </div>
+
+        <div class="reward-details" id="rewardDetails">
+            <div class="details-header">
+                <img src="" alt="Cupón Detalle" id="detailsImage">
+                <h2 id="detailsTitle"></h2>
+                <h3>¡Felicidades!!</h3>
+            </div>
+            <p id="detailsDescription"></p>
+            <img src="/imagenes/barra.png" alt="Código de Barras">
+            <button id="closeButton">Cerrar</button>
+        </div>
+    </div>
+    <script >
+        document.addEventListener('DOMContentLoaded', () => {
+    const rewardsList = document.getElementById('rewardsList');
+    const rewardDetails = document.getElementById('rewardDetails');
+    const detailsImage = document.getElementById('detailsImage');
+    const detailsTitle = document.getElementById('detailsTitle');
+    const detailsDescription = document.getElementById('detailsDescription');
+    const closeButton = document.getElementById('closeButton');
+    const rewardItems = document.querySelectorAll('.reward-item');
+
+    rewardItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const title = item.dataset.title;
+            const description = item.dataset.description;
+            const imageSrc = item.dataset.image;
+
+            detailsImage.src = imageSrc;
+            detailsTitle.textContent = title;
+            detailsDescription.textContent = description;
+            rewardDetails.classList.add('active');
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        rewardDetails.classList.remove('active');
+    });
+});
+    </script>
+</body>
+
+</html>

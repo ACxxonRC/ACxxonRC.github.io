@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoMind - Iniciar sesión</title>
+  <link rel="stylesheet" href="/CodigosCSS/formulario.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="/imagenes/logo.png" alt="EcoMind Logo" class="logo" />
+
+    <div class="form-box">
+      <h2>Bienvenido a EcoMind</h2>
+
+      <div class="toggle-buttons">
+        <button class="active">Iniciar</button>
+        <button class="inactive" onclick="irARegistro()">Registrar</button>
+      </div>
+
+      <form id="formLogin">
+        <input type="text" id="usuario" placeholder="Usuario" required />
+        <input type="password" id="contrasena" placeholder="Contraseña" required />
+        <button type="submit" class="btn-submit">Iniciar sesión</button>
+      </form>
+      
+
+      <p class="texto-link">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('formLogin').addEventListener('submit', function (e) {
+      e.preventDefault();
+  
+      const user = document.getElementById('usuario').value.trim();
+      const pass = document.getElementById('contrasena').value.trim();
+  
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      const usuarioValido = usuarios.find(u => u.user === user && u.pass === pass);
+  
+      if (!usuarioValido) {
+        alert('Usuario o contraseña incorrectos.');
+        return;
+      }
+  
+      // Guardar el usuario logueado con la misma estructura usada en dashboard.html
+      localStorage.setItem('usuarioLogueado', JSON.stringify({ usuario: user }));
+  
+      window.location.href = "dashboard.html";
+      alert('¡Bienvenido!');
+      window.location.href = "dashboard.html";
+    
+    });
+    
+  </script>
+  
+</body>
+</html>

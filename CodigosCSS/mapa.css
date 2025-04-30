@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #a8d0e6;
+  }
+  
+  .menu-top {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  .menu-icon {
+    font-size: 28px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .titulo {
+    font-size: 20px;
+    color: #004466;
+    margin: 0;
+  }
+  
+  .contenido {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .mapa-img img {
+    width: 90%;
+    max-width: 300px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+  }
+  
+  .filtros {
+    background-color: white;
+    border: 2px solid orange;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .filtros label {
+    display: block;
+    margin: 5px 0;
+    font-weight: bold;
+  }
+  
+  .btn-buscar {
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  /* Menú lateral */
+/* Sidebar nuevo */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 240px;
+  height: 100%;
+  background-color: white;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border: 2px solid orange;
+  border-left: none;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+  z-index: 1000;
+  padding-top: 20px;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.perfil-box {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.perfil-box span {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.menu-list li {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #222;
+  transition: background 0.2s;
+}
+
+.menu-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.menu-list li img {
+  width: 24px;
+  margin-right: 12px;
+}

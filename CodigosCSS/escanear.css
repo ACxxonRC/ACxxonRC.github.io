@@ -1,0 +1,72 @@
+.reclamar-puntos-container {
+  background-color: #8ac4ff; /* Un azul claro similar al de la imagen */
+  border-radius: 15px;
+  padding: 30px;
+  margin: 20px auto;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.instruccion {
+  color: #333;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.qr-code-box {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 0 auto 20px;
+  max-width: 200px;
+}
+
+.qr-code-box img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.reclamar-btn {
+  background-color: #f28c28; /* Naranja del botón */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.reclamar-btn:hover {
+  background-color: #d97718;
+}
+
+.input-correo {
+  margin-bottom: 20px;
+}
+
+.input-correo input[type="email"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  width: calc(100% - 24px);
+  font-size: 1em;
+}
+
+.confirmar-pago-btn {
+  background-color: #f28c28; /* Naranja del botón */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirmar-pago-btn:hover {
+  background-color: #d97718;
+}
