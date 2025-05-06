@@ -1,70 +1,106 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #a8d0e6;
-  }
-  
-  .menu-top {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    padding: 10px 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-  }
-  
-  .menu-icon {
-    font-size: 28px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  .titulo {
-    font-size: 20px;
-    color: #004466;
-    margin: 0;
-  }
-  
-  .contenido {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .mapa-img img {
-    width: 90%;
-    max-width: 300px;
-    border-radius: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    margin-bottom: 20px;
-  }
-  
-  .filtros {
-    background-color: white;
-    border: 2px solid orange;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 15px;
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  
-  .filtros label {
-    display: block;
-    margin: 5px 0;
-    font-weight: bold;
-  }
-  
-  .btn-buscar {
-    background-color: #003366;
-    color: white;
-    border: none;
-    padding: 10px 30px;
-    font-size: 16px;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-  /* Menú lateral */
-/* Sidebar nuevo */
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e0f7fa; /* Un fondo azul claro */
+}
+
+.menu-top {
+  display: flex;
+  align-items: center;
+  background-color: #81d4fa; /* Un azul más claro para la barra superior  #81d4fa */
+  padding: 15px 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: white;
+}
+
+.menu-icon {
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.titulo {
+  font-size: 22px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.contenido {
+  text-align: center;
+  padding: 20px;
+}
+
+.mapa-container {
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+  border-radius: 15px;
+  overflow: hidden; /* Para que el iframe respete el border-radius */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.filtros-container {
+  background-color: white;
+  border: 2px solid #00897b; /* Un verde azulado para el borde */
+  border-radius: 15px;
+  display: inline-block;
+  padding: 15px 20px;
+  text-align: left;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filtro-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.filtro-label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer; /* Para que parezca interactivo */
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.color-box.camion {
+  background-color: black;
+}
+
+.color-box.contenedor {
+  background-color: #9e9e9e; /* Gris */
+}
+
+.color-box.lleno {
+  background-color: #ef5350; /* Rojo */
+}
+
+.btn-buscar {
+  background-color: #00897b; /* Verde azulado para el botón */
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease;
+}
+
+.btn-buscar:hover {
+  background-color: #00695c;
+}
+
+/* Menú lateral (sin cambios importantes para la apariencia) */
 .sidebar {
   position: fixed;
   top: 0;

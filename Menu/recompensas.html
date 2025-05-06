@@ -6,87 +6,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recompensas Ecomind</title>
     <link rel="stylesheet" href="/CodigosCSS/recompensas.css">
-    <link rel="stylesheet" href="/CodigosCSS/recompensas.css"> </head>
+</head>
 
 <body>
-    <div class="container">
-        <div class="rewards-list" id="rewardsList">
-            <div class="reward-item" data-title="2x1 en conos sencillos"
-                data-description="Disfruta de 2 conos sencillos al precio de 1. ¡Una dulce oportunidad!"
-                data-image="/imagenes/Cupones/mac.png" data-logo="/imagenes/Cupones/mac.png">
-                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
-                    <img src="/imagenes/Cupones/mac.png" alt="Logo McDonald's" class="company-logo">
-                </div>
-            </div>
-            <div class="reward-item" data-title="10$ de Descuento"
-                data-description="Ahorra 10$ en tu próxima compra en Starbucks. ¡Tu café favorito con descuento!"
-                data-image="cupon_starbucks.png" data-logo="/imagenes/logos/starbucks_logo_small.png">
-                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
-                    <img src="/imagenes/Cupones/star.png" alt="Logo Starbucks" class="company-logo">
-                </div>
-            </div>
-            <div class="reward-item" data-title="10% De Descuento"
-                data-description="Obtén un 10% de descuento en tus productos favoritos en Walmart. ¡Ahorra en grande!"
-                data-image="cupon_walmart_10.png" data-logo="/imagenes/logos/walmart_logo_small.png">
-                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
-                    <img src="/imagenes/Cupones/walt.png" alt="Logo Walmart" class="company-logo">
-                </div>
-            </div>
-            <div class="reward-item" data-title="5% De Descuento"
-                data-description="Llévate un 5% de descuento en la increíble tecnología de Samsung. ¡Innovación a mejor precio!"
-                data-image="cupon_samsung.png" data-logo="/imagenes/logos/samsung_logo_small.png">
-                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
-                    <img src="/imagenes/Cupones/samsus.png" alt="Logo Samsung" class="company-logo">
-                </div>
-            </div>
-            <div class="reward-item" data-title="100$ de descuento"
-                data-description="¡Increíble! 100$ de descuento en tu próxima compra en Walmart. ¡No te lo pierdas!"
-                data-image="cupon_walmart_100.png" data-logo="/imagenes/logos/walmart_logo_small.png">
-                <div class="coupon-thumbnail" style="background-image: url('/imagenes/imgInsignias/cupon.png');">
-                    <img src="/imagenes/Cupones/walt.png" alt="Logo Walmart" class="company-logo">
-                </div>
-            </div>
+    <div class="sidebar" id="sidebar">
+        <div class="perfil-box">
+          <img src="../imagenes/avatar.png" alt="Perfil" class="avatar">
+          <span id="nombre-usuario">Perfil</span>
         </div>
+        <ul class="menu-list">
+          <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
+          <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
+          <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
+          <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Atención al usuario</li>
+          <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
+        </ul>
+      </div>
+    
+      <div class="menu-top">
+        <span class="menu-icon" onclick="toggleSidebar()">☰</span>
+        <h2 class="titulo">Recompensas</h2>
+        <div class="logo-placeholder"></div>
+      </div>
 
-        <div class="reward-details" id="rewardDetails">
-            <div class="details-header">
-                <img src="" alt="Cupón Detalle" id="detailsImage">
-                <h2 id="detailsTitle"></h2>
-                <h3>¡Felicidades!!</h3>
+      <div class="container-rewards">
+        <div class="rewards-list">
+            <div class="reward-item coupon-green">
+                <div class="coupon-content">
+                    <div class="reward-logo-coupon">
+                        <img src="/imagenes/Cupones/mac.png" alt="McDonald's">
+                    </div>
+                    <div class="reward-details-coupon">
+                        <span class="reward-title-coupon">2x1 en conos sencillos</span>
+                    </div>
+                </div>
             </div>
-            <p id="detailsDescription"></p>
-            <img src="/imagenes/barra.png" alt="Código de Barras">
-            <button id="closeButton">Cerrar</button>
+
+            <div class="reward-item coupon-green">
+                <div class="coupon-content">
+                    <div class="reward-logo-coupon">
+                        <img src="/imagenes/Cupones/mac.png" alt="Starbucks">
+                    </div>
+                    <div class="reward-details-coupon">
+                        <span class="reward-title-coupon">Combo Hamburguesa $50</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="reward-item coupon-green">
+                <div class="coupon-content">
+                    <div class="reward-logo-coupon">
+                        <img src="/imagenes/Cupones/star.png" alt="McDonald's">
+                    </div>
+                    <div class="reward-details-coupon">
+                        <span class="reward-title-coupon">Llevate un Crossant</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="reward-item coupon-green">
+                <div class="coupon-content">
+                    <div class="reward-logo-coupon">
+                        <img src="/imagenes/Cupones/star.png" alt="McDonald's">
+                    </div>
+                    <div class="reward-details-coupon">
+                        <span class="reward-title-coupon">Cafe chico de regalo</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+
         </div>
-    </div>
-    <script >
-        document.addEventListener('DOMContentLoaded', () => {
-    const rewardsList = document.getElementById('rewardsList');
-    const rewardDetails = document.getElementById('rewardDetails');
-    const detailsImage = document.getElementById('detailsImage');
-    const detailsTitle = document.getElementById('detailsTitle');
-    const detailsDescription = document.getElementById('detailsDescription');
-    const closeButton = document.getElementById('closeButton');
+        <div id="coupon-popup" class="coupon-popup">
+            <div class="popup-content">
+                <h2 id="popup-title">¡Felicidades!!</h2>
+                <div class="popup-logo">
+                    <img id="popup-logo-img" src="/imagenes/Cupones/mac.png" alt="Logo del cupón">
+                </div>
+                <p id="popup-description">Combo hamburguesa x $50</p>
+                <div class="popup-barcode">
+                    <img src="../imagenes/barra.png" alt="Código de barras">
+                </div>
+                <button id="close-popup" class="close-button">Cerrar</button>
+            </div>
+        </div>
+</body>
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    function cerrarSidebar() {
+      document.getElementById('sidebar').classList.remove('active');
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem('usuarioLogueado');
+      window.location.href = "/index.html";
+    }
+
+    // Redirección si no hay usuario logueado
+    const user = localStorage.getItem('usuarioLogueado');
+    if (!user) {
+      window.location.href = "login.html";
+    } else {
+      const datosUsuario = JSON.parse(user);
+      if (datosUsuario && datosUsuario.usuario) {
+        const perfilSpan = document.getElementById('nombre-usuario');
+        perfilSpan.textContent = datosUsuario.usuario;
+      }
+    }
+
+    // Cierra el menú al hacer clic fuera
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const menuIcon = document.querySelector('.menu-icon');
+      if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    // Manejar clics en cada opción del menú
+    const opcionesMenu = document.querySelectorAll('.menu-list li');
+    opcionesMenu.forEach(opcion => {
+      opcion.addEventListener('click', function () {
+        cerrarSidebar();
+        const texto = this.innerText.trim();
+        
+        if (texto.includes('Mapa Contenedores')) {
+          window.location.href = "../menu/mapa.html";
+        } else if (texto.includes('Recompensas')) {
+          window.location.href = "../menu/recompensas.html";
+        } else if (texto.includes('Escanear Código')) {
+          window.location.href = "../menu/escanear.html";
+        } else if (texto.includes('Atención al usuario')) {
+          window.location.href = "../menu/soporte.html";
+        } else if (texto.includes('Acerca de nosotros')) {
+          window.location.href = "../menu/acerca.html";
+        } else if (texto.includes('Cerrar sesión')) {
+          cerrarSesion();
+        }
+      });
+    });
+
+    
+
     const rewardItems = document.querySelectorAll('.reward-item');
+    const couponPopup = document.getElementById('coupon-popup');
+    const closePopupBtn = document.getElementById('close-popup');
+    const popupTitle = document.getElementById('popup-title');
+    const popupLogoImg = document.getElementById('popup-logo-img');
+    const popupDescription = document.getElementById('popup-description');
 
     rewardItems.forEach(item => {
         item.addEventListener('click', () => {
-            const title = item.dataset.title;
-            const description = item.dataset.description;
-            const imageSrc = item.dataset.image;
+            const logoSrc = item.querySelector('.reward-logo-coupon img').src;
+            const titleText = item.querySelector('.reward-title-coupon').textContent;
 
-            detailsImage.src = imageSrc;
-            detailsTitle.textContent = title;
-            detailsDescription.textContent = description;
-            rewardDetails.classList.add('active');
+            popupLogoImg.src = logoSrc;
+            popupDescription.textContent = titleText;
+            couponPopup.style.display = 'flex'; // Mostrar la ventana emergente
         });
     });
 
-    closeButton.addEventListener('click', () => {
-        rewardDetails.classList.remove('active');
+    closePopupBtn.addEventListener('click', () => {
+        couponPopup.style.display = 'none'; // Ocultar la ventana emergente
     });
-});
-    </script>
-</body>
 
+    // Cierra la ventana emergente al hacer clic fuera de ella
+    window.addEventListener('click', (event) => {
+        if (event.target === couponPopup) {
+            couponPopup.style.display = 'none';
+        }
+    });
+  </script>
 </html>

@@ -1,107 +1,143 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mapa - EcoMind</title>
-  <link rel="stylesheet" href="/CodigosCSS/mapa.css">
-  <link rel="stylesheet" href="/CodigosJS/scripts.js">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa - EcoMind</title>
+    <link rel="stylesheet" href="/CodigosCSS/mapa.css">
+    <link rel="stylesheet" href="/CodigosJS/scripts.js">
+    <style>
+        /* Estilos inline para el contenedor del mapa */
+        .mapa-container iframe {
+            width: 100%;
+            height: 250px; /* Ajusta la altura según necesites */
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-  <div class="sidebar" id="sidebar">
-    <div class="perfil-box">
-      <img src="img/perfil.png" alt="Perfil" class="avatar">
-      <span id="nombre-usuario">Perfil</span>
-    </div>
-    <ul class="menu-list">
-      <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
-      <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
-      <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
-      <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Atención al usuario</li>
-      <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
-    </ul>
-  </div>
-
-  <!-- Menú superior -->
-  <div class="menu-top">
-    <span class="menu-icon" onclick="toggleSidebar()">☰</span>
-    <h2 class="titulo">Mapa</h2>
-  </div>
-
-  <!-- Contenido principal -->
-  <div class="contenido">
-    <div class="mapa-img">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d14575.452456194573!2d-104.66248869895935!3d24.035891805883086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDAyJzA5LjIiTiAxMDTCsDM5JzA3LjkiVw!5e0!3m2!1ses!2smx!4v1745901448808!5m2!1ses!2smx" 
-        width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="sidebar" id="sidebar">
+        <div class="perfil-box">
+            <img src="../imagenes/avatar.png" alt="Perfil" class="avatar">
+            <span id="nombre-usuario">Perfil</span>
+        </div>
+        <ul class="menu-list">
+            <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
+            <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
+            <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
+            <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Atención al usuario</li>
+            <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
+        </ul>
     </div>
 
-    <div class="filtros">
-      <label><input type="checkbox" /> Camiones</label><br />
-      <label><input type="checkbox" /> Contenedores</label><br />
-      <label><input type="checkbox" /> Llenos</label>
+    <div class="menu-top">
+        <span class="menu-icon" onclick="toggleSidebar()">☰</span>
+        <h2 class="titulo">Mapa</h2>
     </div>
 
-    <button class="btn-buscar">Buscar</button>
-  </div>
+    <div class="contenido">
+        <div class="mapa-container" id="mapaContainer">
+            <iframe src="https://www.google.com/maps/embed?pb="
+                    style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
 
-  <!-- Script de funcionalidad -->
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
+        <div class="filtros-container">
+            <div class="filtro-item">
+                <input type="radio" id="camiones" name="filtroMapa" value="camiones">
+                <label for="camiones" class="filtro-label"><div class="color-box camion"></div> Camiones</label>
+            </div>
+            <div class="filtro-item">
+                <input type="radio" id="contenedores" name="filtroMapa" value="contenedores">
+                <label for="contenedores" class="filtro-label"><div class="color-box contenedor"></div> Contenedores</label>
+            </div>
+            <div class="filtro-item">
+                <input type="radio" id="llenos" name="filtroMapa" value="llenos">
+                <label for="llenos" class="filtro-label"><div class="color-box lleno"></div> Llenos</label>
+            </div>
+        </div>
 
-    function cerrarSidebar() {
-      document.getElementById('sidebar').classList.remove('active');
-    }
+        <button class="btn-buscar" onclick="buscarMapa()">Buscar</button>
+    </div>
 
-    function cerrarSesion() {
-      localStorage.removeItem('usuarioLogueado');
-      window.location.href = "/index.html";
-    }
-
-    // Redirección si no hay usuario logueado
-    const user = localStorage.getItem('usuarioLogueado');
-    if (!user) {
-      window.location.href = "login.html";
-    } else {
-      const datosUsuario = JSON.parse(user);
-      if (datosUsuario && datosUsuario.usuario) {
-        const perfilSpan = document.getElementById('nombre-usuario');
-        perfilSpan.textContent = datosUsuario.usuario;
-      }
-    }
-
-    // Cierra el menú al hacer clic fuera
-    document.addEventListener('click', function(event) {
-      const sidebar = document.getElementById('sidebar');
-      const menuIcon = document.querySelector('.menu-icon');
-      if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
-        sidebar.classList.remove('active');
-      }
-    });
-
-    // Manejar clics en cada opción del menú
-    const opcionesMenu = document.querySelectorAll('.menu-list li');
-    opcionesMenu.forEach(opcion => {
-      opcion.addEventListener('click', function () {
-        cerrarSidebar();
-        const texto = this.innerText.trim();
-        
-        if (texto.includes('Mapa Contenedores')) {
-          window.location.href = "/menu/mapa.html";
-        } else if (texto.includes('Recompensas')) {
-          window.location.href = "/menu/recompensas.html";
-        } else if (texto.includes('Escanear Código')) {
-          window.location.href = "/menu/escanear.html";
-        } else if (texto.includes('Atención al usuario')) {
-          window.location.href = "/menu/soporte.html";
-        } else if (texto.includes('Acerca de nosotros')) {
-          window.location.href = "/menu/acerca.html";
-        } else if (texto.includes('Cerrar sesión')) {
-          cerrarSesion();
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
         }
-      });
-    });
-  </script>
+
+        function cerrarSidebar() {
+            document.getElementById('sidebar').classList.remove('active');
+        }
+
+        function cerrarSesion() {
+            localStorage.removeItem('usuarioLogueado');
+            window.location.href = "/index.html";
+        }
+
+        // Redirección si no hay usuario logueado
+        const user = localStorage.getItem('usuarioLogueado');
+        if (!user) {
+            window.location.href = "login.html";
+        } else {
+            const datosUsuario = JSON.parse(user);
+            if (datosUsuario && datosUsuario.usuario) {
+                const perfilSpan = document.getElementById('nombre-usuario');
+                perfilSpan.textContent = datosUsuario.usuario;
+            }
+        }
+
+        // Cierra el menú al hacer clic fuera
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuIcon = document.querySelector('.menu-icon');
+            if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Manejar clics en cada opción del menú
+        const opcionesMenu = document.querySelectorAll('.menu-list li');
+        opcionesMenu.forEach(opcion => {
+            opcion.addEventListener('click', function () {
+                cerrarSidebar();
+                const texto = this.innerText.trim();
+
+                if (texto.includes('Mapa Contenedores')) {
+                    window.location.href = "/menu/mapa.html";
+                } else if (texto.includes('Recompensas')) {
+                    window.location.href = "/menu/recompensas.html";
+                } else if (texto.includes('Escanear Código')) {
+                    window.location.href = "/menu/escanear.html";
+                } else if (texto.includes('Atención al usuario')) {
+                    window.location.href = "/menu/soporte.html";
+                } else if (texto.includes('Acerca de nosotros')) {
+                    window.location.href = "/menu/acerca.html";
+                } else if (texto.includes('Cerrar sesión')) {
+                    cerrarSesion();
+                }
+            });
+        });
+
+        function buscarMapa() {
+            const camionesRadio = document.getElementById('camiones');
+            const contenedoresRadio = document.getElementById('contenedores');
+            const llenosRadio = document.getElementById('llenos');
+            const mapaContainer = document.getElementById('mapaContainer');
+
+            let embedUrl = "";
+
+            if (camionesRadio.checked) {
+                embedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.54229486894!2d-104.65876452769075!3d24.0119346784928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869bb7fd1b8a164b%3A0x1469d7623b1917b8!2sTacuba%201104%2C%20Azcapotzalco%2C%2034160%20Durango%2C%20Dgo.!5e0!3m2!1ses!2smx!4v1746064335588!5m2!1ses!2smx"; // Mapa de camiones (ejemplo de búsqueda)
+            } else if (contenedoresRadio.checked) {
+                embedUrl = "https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3701.779303538212!2d-104.65288878528598!3d24.0208077855517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scontenedores!5e0!3m2!1ses-MX!2smx!4v1633003543258"; // Mapa de contenedores (ejemplo de búsqueda)
+            } else if (llenosRadio.checked) {
+                embedUrl = "https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3701.779303538212!2d-104.65288878528598!3d24.0208077855517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scontenedores+llenos!5e0!3m2!1ses-MX!2smx!4v1633003543258"; // Mapa de contenedores llenos (ejemplo de búsqueda)
+            } else {
+                embedUrl = "https://www.google.com/maps/embed?pb="; // Mapa por defecto
+            }
+
+            mapaContainer.innerHTML = `<iframe src="${embedUrl}" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+        }
+    </script>
 </body>
 </html>

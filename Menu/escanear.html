@@ -12,7 +12,7 @@
 <body>
   <div class="sidebar" id="sidebar">
     <div class="perfil-box">
-      <img src="img/perfil.png" alt="Perfil" class="avatar">
+      <img src="../imagenes/avatar.png" alt="Perfil" class="avatar">
       <span id="nombre-usuario">Perfil</span>
     </div>
     <ul class="menu-list">
@@ -35,13 +35,13 @@
     <div class="reclamar-puntos-container">
       <p class="instruccion">Pasa por el escáner para reclamar</p>
       <div class="qr-code-box">
-        <img src="/imagenes/qr_code_placeholder.png" alt="Código QR">
+        <img src="/imagenes/qr.png" alt="Código QR">
       </div>
       <button class="reclamar-btn">250pts</button>
       <div class="input-correo">
-        <input type="email" placeholder="Tu correo electrónico">
-      </div>
-      <button class="confirmar-pago-btn">Confirmar Pago</button>
+        <input type="email" id="email-usuario" placeholder="Tu correo electrónico">
+    </div>
+    <button class="confirmar-pago-btn" id="enviar-notificacion">Confirmar Pago</button>
     </div>
   </div>
 
@@ -102,6 +102,52 @@
         }
       });
     });
+
+// ... tu código JavaScript existente ...
+
+const enviarNotificacionBtn = document.getElementById('enviar-notificacion');
+    const emailUsuarioInput = document.getElementById('email-usuario');
+
+    enviarNotificacionBtn.addEventListener('click', () => {
+        const emailUsuario = emailUsuarioInput.value;
+
+        if (emailUsuario) {
+            alert(`Notificación enviada a: ${emailUsuario} (esto es una simulación)`);
+            // Aquí iría la llamada a tu función del lado del servidor
+            // para enviar el correo electrónico.
+            enviarNotificacionAlServidor(emailUsuario);
+        } else {
+            alert('Por favor, ingresa tu correo electrónico.');
+        }
+    });
+
+    function enviarNotificacionAlServidor(email) {
+        // Este es un ejemplo de cómo podrías hacer una petición
+        // al servidor usando la API Fetch. Reemplaza '/api/enviar-correo'
+        // con la URL de tu endpoint en el servidor.
+
+        fetch('/api/enviar-correo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: email }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Respuesta del servidor:', data);
+            if (data.success) {
+                alert('Notificación enviada con éxito!');
+            } else {
+                alert('Error al enviar la notificación.');
+            }
+        })
+        .catch((error) => {
+            console.error('Error al enviar la petición:', error);
+            alert('Error de conexión al servidor.');
+        });
+    }
+    
   </script>
 </body>
 

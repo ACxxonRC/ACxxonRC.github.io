@@ -10,7 +10,7 @@
 <body>
   <div class="sidebar" id="sidebar">
     <div class="perfil-box">
-      <img src="img/perfil.png" alt="Perfil" class="avatar">
+      <img src="../imagenes/avatar.png" alt="Perfil" class="avatar">
       <span id="nombre-usuario">Perfil</span>
     </div>
     <ul class="menu-list">
@@ -28,17 +28,42 @@
   </div>
 
   <div class="dashboard">
-    <div class="puntos" id="puntos">1300pts</div>
+    <h1>Obtuviste</h1>
+    <div class="puntos" id="puntos">1300 pts</div>
     <div class="puntos-label">Puntos Totales</div>
 
     <div class="icon-grid">
-      <div class="icon-btn"><img src="/imagenes/imgInsignias/bote.png" alt="Medalla" /></div>
-      <div class="icon-btn"><img src="/imagenes/imgInsignias/centro.png" alt="Contenedor" /></div>
-      <div class="icon-btn"><img src="/imagenes/imgInsignias/evento.png" alt="Puntos" /></div>
-      <div class="icon-btn"><img src="/imagenes/imgInsignias/recompensa.png" alt="Planta" /></div>
+        <div class="icon-btn" ><img src="../imagenes/icons8-eliminar.gif" alt="Insignia" title="Recolectaste 15kg de basura. Sigue asi" /></div>
+        <div  class="icon-btn"><img src="../imagenes/camion.gif" alt="Insignia" title="Visitaste 3 contenedores en el mes"/></div>
+        <div class="icon-btn"><img src="../imagenes/icons8-boleto.gif" alt="Insignia" title="Tienes Nuevas recompensas revisalas YA!" /></div>
+        <div class="icon-btn"><img src="../imagenes/icons8-medalla.gif" alt="Insignia" title="Estas en racha  dias seguidos recolectando residuos"/></div>
     </div>
-  </div>
 
+    <div class="news-grid">
+      <a href="https://teleton.org/reciclaton/" class="news-item" target="_blank">
+          <img src="../imagenes/Campaña/image1.png" alt="Noticia 1">
+      </a>
+      <a href="https://mcdonalds.es/compromisos/compromiso-sostenibilidad" class="news-item" target="_blank">
+          <img src="../imagenes/Campaña/image2.png" alt="Noticia 2">
+      </a>
+      <a href="https://diainternacional.org/dia-mundial-del-reciclaje/#:~:text=%E2%96%B7%20D%C3%ADa%20Mundial%20del%20Reciclaje%202025&text=El%20d%C3%ADa%2017%20de%20mayo%20de%202025%20ser%C3%A1%20el..." class="news-item" target="_blank">
+          <img src="../imagenes/Campaña/image.png" alt="Noticia 3">
+      </a>
+      <a href="https://mcdonalds.es/compromisos/compromiso-sostenibilidad" class="news-item" target="_blank">
+          <img src="../imagenes/Campaña/image3.png" alt="Noticia 4">
+      </a>
+  </div>
+</div>
+
+  <div id="icon-popup" class="icon-popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeIconPopup()">&times;</span>
+        <div id="popup-icon-container">
+            </div>
+        <p id="popup-message">Información del icono...</p>
+    </div>
+</div>
+</body>
   <script>
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('active');
@@ -82,20 +107,52 @@
         const texto = this.innerText.trim();
         
         if (texto.includes('Mapa Contenedores')) {
-          window.location.href = "/menu/mapa.html";
+          window.location.href = "../menu/mapa.html";
         } else if (texto.includes('Recompensas')) {
-          window.location.href = "/menu/recompensas.html";
+          window.location.href = "../menu/recompensas.html";
         } else if (texto.includes('Escanear Código')) {
-          window.location.href = "/menu/escanear.html";
+          window.location.href = "../menu/escanear.html";
         } else if (texto.includes('Atención al usuario')) {
-          window.location.href = "/menu/soporte.html";
+          window.location.href = "../menu/soporte.html";
         } else if (texto.includes('Acerca de nosotros')) {
-          window.location.href = "/menu/acerca.html";
+          window.location.href = "../menu/acerca.html";
         } else if (texto.includes('Cerrar sesión')) {
           cerrarSesion();
         }
       });
     });
+
+
+    // ... tu código JavaScript existente ...
+
+    const iconButtons = document.querySelectorAll('.icon-btn');
+    const iconPopup = document.getElementById('icon-popup');
+    const popupIconContainer = document.getElementById('popup-icon-container');
+    const popupMessage = document.getElementById('popup-message');
+
+    iconButtons.forEach(iconBtn => {
+        iconBtn.addEventListener('click', () => {
+            const clickedIcon = iconBtn.querySelector('img');
+            const iconSrc = clickedIcon.src;
+            const iconAlt = clickedIcon.alt;
+            const iconTitle = clickedIcon.title;
+
+            popupIconContainer.innerHTML = `<img src="${iconSrc}" alt="${iconAlt}">`;
+            popupMessage.textContent = `Icono: ${iconAlt || 'Sin descripción'}${iconTitle ? ', Descripción: ' + iconTitle : ''}`;
+            iconPopup.style.display = 'flex'; // Mostrar la ventana emergente
+        });
+    });
+
+    function closeIconPopup() {
+        iconPopup.style.display = 'none'; // Ocultar la ventana emergente
+    }
+
+    // Cierra la ventana emergente al hacer clic fuera de ella
+    window.addEventListener('click', (event) => {
+        if (event.target === iconPopup) {
+            closeIconPopup();
+        }
+    });
   </script>
-</body>
+
 </html>
