@@ -1,59 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EcoMind - Iniciar sesión</title>
-  <link rel="stylesheet" href="/CodigosCSS/formulario.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoMind - Iniciar sesión / Registrarse</title>
+    <link rel="stylesheet" href="/CodigosCSS/formulario.css" />
 </head>
+
 <body>
-  <div class="container">
-    <img src="/imagenes/logo.png" alt="EcoMind Logo" class="logo" />
+    <div class="container">
+        <img src="/imagenes/logo.png" alt="EcoMind Logo" class="logo" />
 
-    <div class="form-box">
-      <h2>Bienvenido a EcoMind</h2>
+        <div class="form-box">
+            <h2>Bienvenido a EcoMind</h2>
 
-      <div class="toggle-buttons">
-        <button class="active">Iniciar</button>
-        <button class="inactive" onclick="irARegistro()">Registrar</button>
-      </div>
+            <div class="switch-container">
+                <label class="switch">
+                    <input type="checkbox" id="toggleAuth" onchange="toggleForm()">
+                    <span class="slider round"></span>
+                    <span class="switch-label left">Iniciar</span>
+                    <span class="switch-label right">Registrar</span>
+                </label>
+            </div>
 
-      <form id="formLogin">
-        <input type="text" id="usuario" placeholder="Usuario" required />
-        <input type="password" id="contrasena" placeholder="Contraseña" required />
-        <button type="submit" class="btn-submit">Iniciar sesión</button>
-      </form>
-      
+            <form id="formLogin">
+                <input type="text" id="usuarioLogin" placeholder="Usuario" required />
+                <input type="password" id="contrasenaLogin" placeholder="Contraseña" required />
+                <button type="submit" class="btn-submit">Iniciar sesión</button>
+            </form>
 
-      <p class="texto-link">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+            <form id="formRegistro" style="display: none;">
+                <input type="text" id="usuarioRegistro" placeholder="Usuario" required />
+                <input type="email" id="emailRegistro" placeholder="Correo electrónico" required />
+                <input type="password" id="contrasenaRegistro" placeholder="Contraseña" required />
+                <button type="submit" class="btn-submit">Registrarse</button>
+            </form>
+
+            <p class="texto-link">
+                <span id="linkTexto">¿No tienes cuenta?</span>
+                <a href="registro.html" id="linkRegistro">Regístrate</a>
+            </p>
+        </div>
     </div>
-  </div>
 
-  <script>
-    document.getElementById('formLogin').addEventListener('submit', function (e) {
-      e.preventDefault();
-  
-      const user = document.getElementById('usuario').value.trim();
-      const pass = document.getElementById('contrasena').value.trim();
-  
-      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-      const usuarioValido = usuarios.find(u => u.user === user && u.pass === pass);
-  
-      if (!usuarioValido) {
-        alert('Usuario o contraseña incorrectos.');
-        return;
-      }
-  
-      // Guardar el usuario logueado con la misma estructura usada en dashboard.html
-      localStorage.setItem('usuarioLogueado', JSON.stringify({ usuario: user }));
-  
-      window.location.href = "dashboard.html";
-      alert('¡Bienvenido!');
-      window.location.href = "dashboard.html";
-    
-    });
-    
-  </script>
-  
+    <script>
+        const toggleAuth = document.getElementById('toggleAuth');
+        const formLogin = document.getElementById('formLogin');
+        const formRegistro = document.getElementById('formRegistro');
+        const linkTexto = document.getElementById('linkTexto');
+        const linkRegistro = document.getElementById('linkRegistro');
+
+        function toggleForm() {
+            if (toggleAuth.checked) {
+                formLogin.style.display = 'none';
+                formRegistro.style.display = 'flex';
+                linkTexto.textContent = "¿Ya tienes cuenta?";
+                linkRegistro.textContent = "Iniciar sesión";
+                linkRegistro.href = "login.html"; // Asegúrate de que esta sea la URL correcta
+            } else {
+                formLogin.style.display = 'flex';
+                formRegistro.style.display = 'none';
+                linkTexto.textContent = "¿No tienes cuenta?";
+                linkRegistro.textContent = "Regístrate";
+                linkRegistro.href = "registro.html";
+            }
+        }
+
+        document.getElementById('formLogin').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const user = document.getElementById('usuarioLogin').value.trim();
+            const pass = document.getElementById('contrasenaLogin').value.trim();
+
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const usuarioValido = usuarios.find(u => u.user === user && u.pass === pass);
+
+            if (!usuarioValido) {
+                alert('Usuario o contraseña incorrectos.');
+                return;
+            }
+
+            localStorage.setItem('usuarioLogueado', JSON.stringify({ usuario: user }));
+            window.location.href = "dashboard.html";
+        });
+
+        document.getElementById('formRegistro').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const user = document.getElementById('usuarioRegistro').value.trim();
+            const email = document.getElementById('emailRegistro').value.trim();
+            const pass = document.getElementById('contrasenaRegistro').value.trim();
+
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+            if (usuarios.some(u => u.user === user)) {
+                alert('Este usuario ya existe. Por favor, elige otro.');
+                return;
+            }
+
+            usuarios.push({ user: user, email: email, pass: pass });
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+            toggleAuth.checked = false; // Cambia al formulario de inicio de sesión
+            toggleForm();
+        });
+    </script>
+
 </body>
+
 </html>

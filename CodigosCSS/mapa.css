@@ -1,17 +1,17 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #e0f7fa; /* Un fondo azul claro */
+  background-color: #a8d0e6; /* Un fondo azul claro */
 }
 
 .menu-top {
   display: flex;
   align-items: center;
-  background-color: #81d4fa; /* Un azul más claro para la barra superior  #81d4fa */
+  background-color: #ffffff; /* Un azul más claro para la barra superior  #81d4fa */
   padding: 15px 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  color: white;
+  
 }
 
 .menu-icon {
@@ -42,7 +42,7 @@ body {
 
 .filtros-container {
   background-color: white;
-  border: 2px solid #00897b; /* Un verde azulado para el borde */
+  border: 2px solid #a8d0e6; /* Un verde azulado para el borde */
   border-radius: 15px;
   display: inline-block;
   padding: 15px 20px;
