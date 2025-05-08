@@ -15,10 +15,10 @@
           <span id="nombre-usuario">Perfil</span>
         </div>
         <ul class="menu-list">
+          <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Inicio</li>
           <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
           <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
           <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
-          <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Atención al usuario</li>
           <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
         </ul>
       </div>
@@ -135,6 +135,7 @@
         cerrarSidebar();
         const texto = this.innerText.trim();
         
+        
         if (texto.includes('Mapa Contenedores')) {
           window.location.href = "/Menu/mapa.html";
         } else if (texto.includes('Recompensas')) {
@@ -143,8 +144,8 @@
           window.location.href = "/Menu/escanear.html";
         } else if (texto.includes('Atención al usuario')) {
           window.location.href = "/Menu/soporte.html";
-        } else if (texto.includes('Acerca de nosotros')) {
-          window.location.href = "/Menu/acerca.html";
+        } else if (texto.includes('Inicio')) {
+          window.location.href = "/CodigosHTML/dashboard.html";
         } else if (texto.includes('Cerrar sesión')) {
           cerrarSesion();
         }

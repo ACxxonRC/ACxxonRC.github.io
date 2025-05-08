@@ -2,153 +2,156 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EcoMind - Escanear Código</title>
-  <link rel="stylesheet" href="/CodigosCSS/escanear.css" />
-  <link rel="stylesheet" href="/CodigosCSS/dashboard.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoMind - Escanear Código</title>
+    <link rel="stylesheet" href="/CodigosCSS/escanear.css" />
+    <link rel="stylesheet" href="/CodigosCSS/dashboard.css">
 </head>
 
 <body>
-  <div class="sidebar" id="sidebar">
-    <div class="perfil-box">
-      <img src="../imagenes/avatar.png" alt="Perfil" class="avatar">
-      <span id="nombre-usuario">Perfil</span>
+    <div class="sidebar" id="sidebar">
+        <div class="perfil-box">
+            <img src="../imagenes/avatar.png" alt="Perfil" class="avatar">
+            <span id="nombre-usuario">Perfil</span>
+        </div>
+        <ul class="menu-list">
+            <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Inicio</li>
+            <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
+            <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
+            <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
+            <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
+        </ul>
+        
     </div>
-    <ul class="menu-list">
-      <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
-      <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
-      <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
-      <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Atención al usuario</li>
-      <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
-    </ul>
-  </div>
 
-  <div class="menu-top">
-    <span class="menu-icon" onclick="toggleSidebar()">☰</span>
-    <div class="logo-placeholder"></div>
-  </div>
-
-  <div class="dashboard">
-    <h2>Escanear Código para Reclamar Puntos</h2>
-
-    <div class="reclamar-puntos-container">
-      <p class="instruccion">Pasa por el escáner para reclamar</p>
-      <div class="qr-code-box">
-        <img src="/imagenes/qr.png" alt="Código QR">
-      </div>
-      <button class="reclamar-btn">250pts</button>
-      <div class="input-correo">
-        <input type="email" id="email-usuario" placeholder="Tu correo electrónico">
+    <div class="menu-top">
+        <span class="menu-icon" onclick="toggleSidebar()">☰</span>
+        <div class="logo-placeholder"></div>
     </div>
-    <button class="confirmar-pago-btn" id="enviar-notificacion">Confirmar Pago</button>
+
+    <div class="dashboard">
+        <h2>Escanear Código para Reclamar Puntos</h2>
+
+        <div class="reclamar-puntos-container">
+            <p class="instruccion">Pasa por el escáner para reclamar</p>
+            <div class="qr-code-box">
+                <img src="/imagenes/qr.png" alt="Código QR">
+            </div>
+            <button class="reclamar-btn">250pts</button>
+            <div class="input-correo">
+                <input type="email" id="email-usuario" placeholder="Tu correo electrónico">
+            </div>
+            <button class="confirmar-pago-btn" id="enviar-notificacion">Confirmar Pago</button>
+        </div>
     </div>
-  </div>
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
-
-    function cerrarSidebar() {
-      document.getElementById('sidebar').classList.remove('active');
-    }
-
-    function cerrarSesion() {
-      localStorage.removeItem('usuarioLogueado');
-      window.location.href = "/index.html";
-    }
-
-    // Redirección si no hay usuario logueado
-    const user = localStorage.getItem('usuarioLogueado');
-    if (!user) {
-      window.location.href = "login.html";
-    } else {
-      const datosUsuario = JSON.parse(user);
-      if (datosUsuario && datosUsuario.usuario) {
-        const perfilSpan = document.getElementById('nombre-usuario');
-        perfilSpan.textContent = datosUsuario.usuario;
-      }
-    }
-
-    // Cierra el menú al hacer clic fuera
-    document.addEventListener('click', function (event) {
-      const sidebar = document.getElementById('sidebar');
-      const menuIcon = document.querySelector('.menu-icon');
-      if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
-        sidebar.classList.remove('active');
-      }
-    });
-
-    // Manejar clics en cada opción del menú
-    const opcionesMenu = document.querySelectorAll('.menu-list li');
-    opcionesMenu.forEach(opcion => {
-      opcion.addEventListener('click', function () {
-        cerrarSidebar();
-        const texto = this.innerText.trim();
-
-        if (texto.includes('Mapa Contenedores')) {
-          window.location.href = "/Menu/mapa.html";
-        } else if (texto.includes('Recompensas')) {
-          window.location.href = "/Menu/recompensas.html";
-        } else if (texto.includes('Escanear Código')) {
-          window.location.href = "/Menu/escanear.html";
-        } else if (texto.includes('Atención al usuario')) {
-          window.location.href = "/Menu/soporte.html";
-        } else if (texto.includes('Acerca de nosotros')) {
-          window.location.href = "/Menu/acerca.html";
-        } else if (texto.includes('Cerrar sesión')) {
-          cerrarSesion();
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
         }
-      });
-    });
 
-// ... tu código JavaScript existente ...
+        function cerrarSidebar() {
+            document.getElementById('sidebar').classList.remove('active');
+        }
 
-const enviarNotificacionBtn = document.getElementById('enviar-notificacion');
-    const emailUsuarioInput = document.getElementById('email-usuario');
+        function cerrarSesion() {
+            localStorage.removeItem('usuarioLogueado');
+            window.location.href = "/index.html";
+        }
 
-    enviarNotificacionBtn.addEventListener('click', () => {
-        const emailUsuario = emailUsuarioInput.value;
+        // Redirección si no hay usuario logueado y mostrar el correo
+        const user = localStorage.getItem('usuarioLogueado');
+        const emailInput = document.getElementById('email-usuario');
 
-        if (emailUsuario) {
-            alert(`Notificación enviada a: ${emailUsuario} (esto es una simulación)`);
-            // Aquí iría la llamada a tu función del lado del servidor
-            // para enviar el correo electrónico.
-            enviarNotificacionAlServidor(emailUsuario);
+        if (!user) {
+            window.location.href = "login.html";
         } else {
-            alert('Por favor, ingresa tu correo electrónico.');
-        }
-    });
+            const datosUsuario = JSON.parse(user);
+            const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const usuarioEncontrado = usuariosRegistrados.find(u => u.user === datosUsuario.usuario);
 
-    function enviarNotificacionAlServidor(email) {
-        // Este es un ejemplo de cómo podrías hacer una petición
-        // al servidor usando la API Fetch. Reemplaza '/api/enviar-correo'
-        // con la URL de tu endpoint en el servidor.
+            if (datosUsuario && datosUsuario.usuario) {
+                const perfilSpan = document.getElementById('nombre-usuario');
+                perfilSpan.textContent = datosUsuario.usuario;
 
-        fetch('/api/enviar-correo', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Respuesta del servidor:', data);
-            if (data.success) {
-                alert('Notificación enviada con éxito!');
-            } else {
-                alert('Error al enviar la notificación.');
+                // Si se encuentra el usuario registrado, llenar el campo de correo
+                if (usuarioEncontrado && usuarioEncontrado.email) {
+                    emailInput.value = usuarioEncontrado.email;
+                }
             }
-        })
-        .catch((error) => {
-            console.error('Error al enviar la petición:', error);
-            alert('Error de conexión al servidor.');
+        }
+
+        // Cierra el menú al hacer clic fuera
+        document.addEventListener('click', function (event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuIcon = document.querySelector('.menu-icon');
+            if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
         });
-    }
-    
-  </script>
+
+        // Manejar clics en cada opción del menú
+        const opcionesMenu = document.querySelectorAll('.menu-list li');
+        opcionesMenu.forEach(opcion => {
+            opcion.addEventListener('click', function () {
+                cerrarSidebar();
+                const texto = this.innerText.trim();
+
+                if (texto.includes('Mapa Contenedores')) {
+                    window.location.href = "/Menu/mapa.html";
+                } else if (texto.includes('Recompensas')) {
+                    window.location.href = "/Menu/recompensas.html";
+                } else if (texto.includes('Escanear Código')) {
+                    window.location.href = "/Menu/escanear.html";
+                } else if (texto.includes('Atención al usuario')) {
+                    window.location.href = "/Menu/soporte.html";
+                } else if (texto.includes('Inicio')) {
+                    window.location.href = "/CodigosHTML/dashboard.html";
+                } else if (texto.includes('Cerrar sesión')) {
+                    cerrarSesion();
+                }
+            });
+        });
+
+        const enviarNotificacionBtn = document.getElementById('enviar-notificacion');
+        const emailUsuarioInput = document.getElementById('email-usuario');
+
+        enviarNotificacionBtn.addEventListener('click', () => {
+            const emailUsuario = emailUsuarioInput.value;
+
+            if (emailUsuario) {
+                alert(`Notificación enviada a: ${emailUsuario} (esto es una simulación)`);
+                enviarNotificacionAlServidor(emailUsuario);
+            } else {
+                alert('Por favor, ingresa tu correo electrónico.');
+            }
+        });
+
+        function enviarNotificacionAlServidor(email) {
+            fetch('/api/enviar-correo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Respuesta del servidor:', data);
+                if (data.success) {
+                    alert('Notificación enviada con éxito!');
+                } else {
+                    alert('Error al enviar la notificación.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error al enviar la petición:', error);
+                alert('Error de conexión al servidor.');
+            });
+        }
+
+    </script>
 </body>
 
 </html>
