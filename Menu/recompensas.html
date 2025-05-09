@@ -6,32 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recompensas Ecomind</title>
     <link rel="stylesheet" href="/CodigosCSS/recompensas.css">
+    <style>
+        /* Estilos básicos para la ventana emergente */
+        .coupon-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .popup-expiration {
+            margin-top: 10px;
+            font-style: italic;
+            color: #777;
+        }
+
+        .close-button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
     <div class="sidebar" id="sidebar">
         <div class="perfil-box">
-          <img src="../imagenes/avatar.png" alt="Perfil" class="avatar">
-          <span id="nombre-usuario">Perfil</span>
+            <img src="../imagenes/avatar.png" alt="Perfil" class="avatar">
+            <span id="nombre-usuario">Perfil</span>
         </div>
         <ul class="menu-list">
-          <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Inicio</li>
-          <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
-          <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
-          <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
-          <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
+            <li><img src="/imagenes/imgInsignias/recompensa.png" alt="Soporte"> Inicio</li>
+            <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
+            <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
+            <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
+            <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
         </ul>
-      </div>
-    
-      <div class="menu-top">
+    </div>
+
+    <div class="menu-top">
         <span class="menu-icon" onclick="toggleSidebar()">☰</span>
         <h2 class="titulo">Recompensas</h2>
         <div class="logo-placeholder"></div>
-      </div>
+    </div>
 
-      <div class="container-rewards">
+    <div class="container-rewards">
         <div class="rewards-list">
-            <div class="reward-item coupon-green">
+            <div class="reward-item coupon-green" data-logo="/imagenes/Cupones/mac.png" data-title="¡Felicidades!!"
+                data-description="2x1 en conos sencillos" data-expiration="10-05-2025">
                 <div class="coupon-content">
                     <div class="reward-logo-coupon">
                         <img src="/imagenes/Cupones/mac.png" alt="McDonald's">
@@ -42,7 +77,8 @@
                 </div>
             </div>
 
-            <div class="reward-item coupon-green">
+            <div class="reward-item coupon-green" data-logo="/imagenes/Cupones/mac.png" data-title="¡Felicidades!!"
+                data-description="Combo Hamburguesa $50" data-expiration="10-05-2025">
                 <div class="coupon-content">
                     <div class="reward-logo-coupon">
                         <img src="/imagenes/Cupones/mac.png" alt="Starbucks">
@@ -54,7 +90,8 @@
             </div>
 
 
-            <div class="reward-item coupon-green">
+            <div class="reward-item coupon-green" data-logo="/imagenes/Cupones/star.png" data-title="¡Felicidades!!"
+                data-description="Llevate un Crossant" data-expiration="12-05-2025">
                 <div class="coupon-content">
                     <div class="reward-logo-coupon">
                         <img src="/imagenes/Cupones/star.png" alt="McDonald's">
@@ -66,7 +103,8 @@
             </div>
 
 
-            <div class="reward-item coupon-green">
+            <div class="reward-item coupon-green" data-logo="/imagenes/Cupones/star.png" data-title="¡Felicidades!!"
+                data-description="Cafe chico de regalo" data-expiration="10-05-2025">
                 <div class="coupon-content">
                     <div class="reward-logo-coupon">
                         <img src="/imagenes/Cupones/star.png" alt="McDonald's">
@@ -76,83 +114,81 @@
                     </div>
                 </div>
             </div>
-            </div>
-
         </div>
-        <div id="coupon-popup" class="coupon-popup">
-            <div class="popup-content">
-                <h2 id="popup-title">¡Felicidades!!</h2>
-                <div class="popup-logo">
-                    <img id="popup-logo-img" src="/imagenes/Cupones/mac.png" alt="Logo del cupón">
-                </div>
-                <p id="popup-description">Combo hamburguesa x $50</p>
-                <div class="popup-barcode">
-                    <img src="../imagenes/barra.png" alt="Código de barras">
-                </div>
-                <button id="close-popup" class="close-button">Cerrar</button>
+    </div>
+    <div id="coupon-popup" class="coupon-popup">
+        <div class="popup-content">
+            <h2 id="popup-title">¡Felicidades!!</h2>
+            <div class="popup-logo">
+                <img id="popup-logo-img" src="/imagenes/Cupones/mac.png" alt="Logo del cupón">
             </div>
+            <p id="popup-description">Descripción del cupón</p>
+            <p id="popup-expiration" class="popup-expiration">Válido hasta: </p>
+            <div class="popup-barcode">
+                <img src="../imagenes/barra.png" alt="Código de barras">
+            </div>
+            <button id="close-popup" class="close-button">Cerrar</button>
         </div>
+    </div>
 </body>
-  <script>
+<script>
     function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
+        document.getElementById('sidebar').classList.toggle('active');
     }
 
     function cerrarSidebar() {
-      document.getElementById('sidebar').classList.remove('active');
+        document.getElementById('sidebar').classList.remove('active');
     }
 
     function cerrarSesion() {
-      localStorage.removeItem('usuarioLogueado');
-      window.location.href = "/index.html";
+        localStorage.removeItem('usuarioLogueado');
+        window.location.href = "/index.html";
     }
 
     // Redirección si no hay usuario logueado
     const user = localStorage.getItem('usuarioLogueado');
     if (!user) {
-      window.location.href = "login.html";
+        window.location.href = "login.html";
     } else {
-      const datosUsuario = JSON.parse(user);
-      if (datosUsuario && datosUsuario.usuario) {
-        const perfilSpan = document.getElementById('nombre-usuario');
-        perfilSpan.textContent = datosUsuario.usuario;
-      }
+        const datosUsuario = JSON.parse(user);
+        if (datosUsuario && datosUsuario.usuario) {
+            const perfilSpan = document.getElementById('nombre-usuario');
+            perfilSpan.textContent = datosUsuario.usuario;
+        }
     }
 
     // Cierra el menú al hacer clic fuera
-    document.addEventListener('click', function(event) {
-      const sidebar = document.getElementById('sidebar');
-      const menuIcon = document.querySelector('.menu-icon');
-      if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
-        sidebar.classList.remove('active');
-      }
+    document.addEventListener('click', function (event) {
+        const sidebar = document.getElementById('sidebar');
+        const menuIcon = document.querySelector('.menu-icon');
+        if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+            sidebar.classList.remove('active');
+        }
     });
 
     // Manejar clics en cada opción del menú
     const opcionesMenu = document.querySelectorAll('.menu-list li');
     opcionesMenu.forEach(opcion => {
-      opcion.addEventListener('click', function () {
-        cerrarSidebar();
-        const texto = this.innerText.trim();
-        
-        
-        if (texto.includes('Mapa Contenedores')) {
-          window.location.href = "/Menu/mapa.html";
-        } else if (texto.includes('Recompensas')) {
-          window.location.href = "/Menu/recompensas.html";
-        } else if (texto.includes('Escanear Código')) {
-          window.location.href = "/Menu/escanear.html";
-        } else if (texto.includes('Atención al usuario')) {
-          window.location.href = "/Menu/soporte.html";
-        } else if (texto.includes('Inicio')) {
-          window.location.href = "/CodigosHTML/dashboard.html";
-        } else if (texto.includes('Cerrar sesión')) {
-          cerrarSesion();
-        }
-      });
+        opcion.addEventListener('click', function () {
+            cerrarSidebar();
+            const texto = this.innerText.trim();
+
+            if (texto.includes('Mapa Contenedores')) {
+                window.location.href = "/Menu/mapa.html";
+            } else if (texto.includes('Recompensas')) {
+                window.location.href = "/Menu/recompensas.html";
+            } else if (texto.includes('Escanear Código')) {
+                window.location.href = "/Menu/escanear.html";
+            } else if (texto.includes('Atención al usuario')) {
+                window.location.href = "/Menu/soporte.html";
+            } else if (texto.includes('Inicio')) {
+                window.location.href = "/CodigosHTML/dashboard.html";
+            } else if (texto.includes('Cerrar sesión')) {
+                cerrarSesion();
+            }
+        });
     });
 
-    
 
     const rewardItems = document.querySelectorAll('.reward-item');
     const couponPopup = document.getElementById('coupon-popup');
@@ -160,20 +196,26 @@
     const popupTitle = document.getElementById('popup-title');
     const popupLogoImg = document.getElementById('popup-logo-img');
     const popupDescription = document.getElementById('popup-description');
+    const popupExpiration = document.getElementById('popup-expiration'); // Nuevo elemento para la fecha de vencimiento
 
     rewardItems.forEach(item => {
         item.addEventListener('click', () => {
-            const logoSrc = item.querySelector('.reward-logo-coupon img').src;
-            const titleText = item.querySelector('.reward-title-coupon').textContent;
+            const logoSrc = item.dataset.logo;
+            const titleText = item.dataset.title;
+            const descriptionText = item.dataset.description;
+            const expirationDate = item.dataset.expiration; // Obtener la fecha de vencimiento
 
             popupLogoImg.src = logoSrc;
-            popupDescription.textContent = titleText;
-            couponPopup.style.display = 'flex'; // Mostrar la ventana emergente
+            popupTitle.textContent = titleText;
+            popupDescription.textContent = descriptionText;
+            popupExpiration.textContent = `Válido hasta: ${expirationDate}`; // Mostrar la fecha
+
+            couponPopup.style.display = 'flex';
         });
     });
 
     closePopupBtn.addEventListener('click', () => {
-        couponPopup.style.display = 'none'; // Ocultar la ventana emergente
+        couponPopup.style.display = 'none';
     });
 
     // Cierra la ventana emergente al hacer clic fuera de ella
@@ -182,5 +224,6 @@
             couponPopup.style.display = 'none';
         }
     });
-  </script>
+</script>
+
 </html>

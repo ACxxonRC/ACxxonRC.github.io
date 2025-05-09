@@ -2,6 +2,10 @@ body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   background-color: #a8d0e6; /* Un fondo azul claro */
+  display: flex; /* Añadimos flexbox al body */
+  flex-direction: column; /* Alineamos los elementos verticalmente */
+  align-items: center; /* Centramos los elementos horizontalmente */
+  min-height: 100vh; /* Aseguramos que el body ocupe al menos toda la altura de la ventana */
 }
 
 .menu-top {
@@ -11,7 +15,8 @@ body {
   padding: 15px 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  
+  width: 100%; /* Ocupa todo el ancho para que el botón centrado se relacione con esto */
+  box-sizing: border-box; /* Incluye el padding y el borde en el ancho */
 }
 
 .menu-icon {
@@ -24,20 +29,33 @@ body {
   font-size: 22px;
   margin: 0;
   font-weight: bold;
+  flex-grow: 1; /* Permite que el título se expanda y empuje el logo a la derecha si hubiera */
+  text-align: center; /* Centramos el título */
 }
+
 
 .contenido {
   text-align: center;
   padding: 20px;
+  width: 90%; /* Limita el ancho del contenido */
+  max-width: 600px; /* Establece un ancho máximo */
+  margin-top: 20px; /* Espacio superior */
+  margin-bottom: 20px; /* Espacio inferior */
 }
 
 .mapa-container {
-  width: 90%;
-  max-width: 400px;
+  width: 100%; /* Ocupa el ancho del contenedor .contenido */
   margin: 20px auto;
   border-radius: 15px;
   overflow: hidden; /* Para que el iframe respete el border-radius */
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.mapa-container iframe {
+  width: 100%;
+  height: 250px; /* Ajusta la altura según necesites */
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .filtros-container {
@@ -94,6 +112,9 @@ body {
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   transition: background-color 0.3s ease;
+  display: block; /* Para que ocupe todo el ancho disponible y podamos centrarlo con margin */
+  margin: 20px auto 0 auto; /* Margen superior e inferior, y auto a los lados para centrar */
+  width: fit-content; /* Ajusta el ancho al contenido del botón */
 }
 
 .btn-buscar:hover {
