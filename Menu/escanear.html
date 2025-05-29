@@ -20,9 +20,10 @@
             <li><img src="/imagenes/imgInsignias/bote.png" alt="Mapa"> Mapa Contenedores</li>
             <li><img src="/imagenes/imgInsignias/centro.png" alt="Recompensas"> Recompensas</li>
             <li><img src="/imagenes/imgInsignias/evento.png" alt="Código"> Escanear Código</li>
-            <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar sesión</li>
+            <li onclick="cerrarSesion()"><img src="/imagenes/imgInsignias/cerrar-sesion.png" alt="Cerrar sesión"> Cerrar
+                sesión</li>
         </ul>
-        
+
     </div>
 
     <div class="menu-top">
@@ -38,11 +39,11 @@
             <div class="qr-code-box">
                 <img src="/imagenes/qr.png" alt="Código QR">
             </div>
-            <button class="reclamar-btn">250pts</button>
+            <div class="puntos-ganar">Obtendrás puntos al confirmar</div>
             <div class="input-correo">
                 <input type="email" id="email-usuario" placeholder="Tu correo electrónico">
             </div>
-            <button class="confirmar-pago-btn" id="enviar-notificacion">Confirmar Pago</button>
+            <button class="confirmar-pago-btn" id="enviar-notificacion">Confirmar</button>
         </div>
     </div>
 
@@ -116,13 +117,32 @@
 
         const enviarNotificacionBtn = document.getElementById('enviar-notificacion');
         const emailUsuarioInput = document.getElementById('email-usuario');
+        const puntosMinimos = 50;
+        const puntosMaximos = 250;
 
         enviarNotificacionBtn.addEventListener('click', () => {
             const emailUsuario = emailUsuarioInput.value;
 
             if (emailUsuario) {
-                alert(`Notificación enviada a: ${emailUsuario} (esto es una simulación)`);
+                // 1. Generar un número aleatorio de puntos dentro del rango
+                const puntosGanados = Math.floor(Math.random() * (puntosMaximos - puntosMinimos + 1)) + puntosMinimos;
+
+                // 2. Obtener los puntos actuales del localStorage
+                let puntosActuales = localStorage.getItem('puntosTotales');
+                puntosActuales = puntosActuales ? parseInt(puntosActuales) : 0;
+
+                // 3. Sumar los puntos ganados
+                const nuevosPuntos = puntosActuales + puntosGanados;
+
+                // 4. Guardar los nuevos puntos en localStorage
+                localStorage.setItem('puntosTotales', nuevosPuntos);
+
+                alert(`¡Has confirmado el pago y ganado ${puntosGanados} puntos! Total: ${nuevosPuntos} pts`);
                 enviarNotificacionAlServidor(emailUsuario);
+
+                // 5. Redirigir al dashboard para que vea la actualización
+                window.location.href = "/CodigosHTML/dashboard.html";
+
             } else {
                 alert('Por favor, ingresa tu correo electrónico.');
             }
@@ -136,21 +156,16 @@
                 },
                 body: JSON.stringify({ email: email }),
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Respuesta del servidor:', data);
-                if (data.success) {
-                    alert('Notificación enviada con éxito!');
-                } else {
-                    alert('Error al enviar la notificación.');
-                }
-            })
-            .catch((error) => {
-                console.error('Error al enviar la petición:', error);
-                alert('Error de conexión al servidor.');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Respuesta del servidor:', data);
+                    if (data.success) {
+                        alert('Notificación enviada con éxito!');
+                    } else {
+                        alert('Error al enviar la notificación.');
+                    }
+                });
         }
-
     </script>
 </body>
 

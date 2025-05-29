@@ -2,14 +2,14 @@ body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background-color: #a8d0e6;
-  }
-  
-  .dashboard {
+}
+
+.dashboard {
     padding: 20px;
     text-align: center;
-  }
-  
-  .menu-top {
+}
+
+.menu-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,12 +17,12 @@ body {
     padding: 10px 20px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-  }
-  
-  .menu-icon {
+}
+
+.menu-icon {
     font-size: 28px;
     cursor: pointer;
-  }
+}
 
 /* Sidebar nuevo */
 .sidebar {
@@ -36,42 +36,42 @@ body {
     border-bottom-right-radius: 25px;
     border: 2px solid orange;
     border-left: none;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: 0.3s ease;
     z-index: 1000;
     padding-top: 20px;
-  }
-  
-  .sidebar.active {
+}
+
+.sidebar.active {
     left: 0;
-  }
-  
-  .perfil-box {
+}
+
+.perfil-box {
     text-align: center;
     padding: 10px;
     border-bottom: 1px solid #ccc;
-  }
-  
-  .avatar {
+}
+
+.avatar {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-  }
-  
-  .perfil-box span {
+}
+
+.perfil-box span {
     display: block;
     margin-top: 10px;
     font-weight: bold;
     color: #333;
-  }
-  
-  .menu-list {
+}
+
+.menu-list {
     list-style: none;
     padding: 0;
     margin-top: 20px;
-  }
-  
-  .menu-list li {
+}
+
+.menu-list li {
     display: flex;
     align-items: center;
     padding: 12px 20px;
@@ -79,58 +79,50 @@ body {
     cursor: pointer;
     color: #222;
     transition: background 0.2s;
-  }
-  
-  .menu-list li:hover {
+}
+
+.menu-list li:hover {
     background-color: #f0f0f0;
-  }
-  
-  .menu-list li img {
+}
+
+.menu-list li img {
     width: 24px;
     margin-right: 12px;
-  }
-  
-/* ... otros estilos ... */
+}
 
 .container-rewards {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     margin-top: 20px;
-    max-width: 600px; /* Manten este valor si lo tienes */
-    width: 90%; /* Manten este valor si lo tienes */
-    margin-left: auto; /* Manten estos márgenes si quieres centrar toda la sección en la página */
-    margin-right: auto; /* Manten estos márgenes si quieres centrar toda la sección en la página */
-    text-align: center; /* Opcional: Centra el texto dentro del container-rewards */
+    max-width: 600px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .rewards-list {
-    /* width: 90%; Manten este valor o ajusta según necesites */
-    max-width: 600px; /* Manten este valor o ajusta según necesites */
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /* margin: 0 auto; Ya no es necesario aquí */
 }
 
-
-
 .reward-item {
-    /* Eliminamos el background-color anterior */
     border-radius: 10px;
-    padding: 0; /* Ajustamos el padding para el contenedor principal */
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Importante para que el fondo del cupón se recorte con el border-radius */
+    overflow: hidden;
 }
 
-/* En tu archivo /CodigosCSS/recompensas.css */
 .coupon-green {
     background-image: url('/imagenes/imgInsignias/cupon.png');
-    background-size: 100% 100%; /* Para forzar el ajuste, pero puede distorsionar */
+    background-size: 100% 100%;
     background-position: center;
     color: #333;
     padding: 15px;
@@ -139,11 +131,10 @@ body {
     justify-content: space-between;
     overflow: hidden;
     border-radius: 10px;
-    width: 331px; /* Fija el ancho */
-    height: 147px; /* Fija la altura */
+    width: 331px;
+    height: 147px;
     cursor: pointer;
 }
-
 
 .coupon-content {
     display: flex;
@@ -164,10 +155,10 @@ body {
 }
 
 .reward-logo-coupon img {
-    max-width: 100%; /* La imagen no excederá el ancho del círculo */
-    max-height: 100%; /* La imagen no excederá la altura del círculo */
-    width: auto;      /* Mantiene la proporción original de la imagen */
-    height: auto;     /* Mantiene la proporción original de la imagen */
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
 }
 
 .reward-details-coupon {
@@ -190,14 +181,12 @@ body {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    margin-left: 15px; /* Espacio entre el texto y el botón */
+    margin-left: 15px;
 }
 
 .reward-button:hover {
     background-color: #29b6f6;
 }
-
-
 
 /* Estilos para la ventana emergente */
 .coupon-popup {
@@ -253,7 +242,7 @@ body {
 
 .popup-barcode img {
     width: 475px;
-    height: 140;
+    height: 140px;
     margin-bottom: 20px;
 }
 
@@ -270,4 +259,50 @@ body {
 
 .close-button:hover {
     background-color: #c82333;
+}
+
+/* Estilos para la ventana emergente de nuevo cupón por puntos */
+#new-coupon-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.new-coupon-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#new-coupon-title {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+#new-coupon-description {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+#close-new-coupon {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#close-new-coupon:hover {
+    background-color: #218838;
 }

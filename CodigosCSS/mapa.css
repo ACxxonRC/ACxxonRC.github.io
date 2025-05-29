@@ -1,188 +1,317 @@
+/* Estilos Generales */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #a8d0e6; /* Un fondo azul claro */
-  display: flex; /* Añadimos flexbox al body */
-  flex-direction: column; /* Alineamos los elementos verticalmente */
-  align-items: center; /* Centramos los elementos horizontalmente */
-  min-height: 100vh; /* Aseguramos que el body ocupe al menos toda la altura de la ventana */
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif; /* O 'Roboto', 'Open Sans' */
+    background-color: #e0f2f7; /* Un azul claro más suave */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: #333; /* Color de texto general */
 }
 
+/* Barra Superior */
 .menu-top {
-  display: flex;
-  align-items: center;
-  background-color: #ffffff; /* Un azul más claro para la barra superior  #81d4fa */
-  padding: 15px 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  width: 100%; /* Ocupa todo el ancho para que el botón centrado se relacione con esto */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho */
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra más pronunciada */
+    z-index: 500; /* Asegura que esté sobre el contenido */
 }
 
 .menu-icon {
-  font-size: 28px;
-  cursor: pointer;
-  margin-right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    margin-right: 15px;
+    color: #4a4a4a; /* Color para el icono */
 }
 
 .titulo {
-  font-size: 22px;
-  margin: 0;
-  font-weight: bold;
-  flex-grow: 1; /* Permite que el título se expanda y empuje el logo a la derecha si hubiera */
-  text-align: center; /* Centramos el título */
+    font-size: 22px;
+    margin: 0;
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: center;
+    color: #333;
 }
 
-
+/* Contenido Principal */
 .contenido {
-  text-align: center;
-  padding: 20px;
-  width: 90%; /* Limita el ancho del contenido */
-  max-width: 600px; /* Establece un ancho máximo */
-  margin-top: 20px; /* Espacio superior */
-  margin-bottom: 20px; /* Espacio inferior */
+    text-align: center;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #ffffff; /* Fondo blanco para el contenido */
+    border-radius: 20px; /* Bordes redondeados para la "tarjeta" de contenido */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Sombra suave para la tarjeta */
 }
 
+/* Contenedor del Mapa */
 .mapa-container {
-  width: 100%; /* Ocupa el ancho del contenedor .contenido */
-  margin: 20px auto;
-  border-radius: 15px;
-  overflow: hidden; /* Para que el iframe respete el border-radius */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 100%;
+    height: 250px; /* Altura fija para el contenedor del mapa */
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Sombra más notoria */
+    display: flex; /* Para centrar el spinner */
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Fondo para cuando no hay mapa */
 }
 
 .mapa-container iframe {
-  width: 100%;
-  height: 250px; /* Ajusta la altura según necesites */
-  border-radius: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 100%;
+    height: 100%; /* Asegura que el iframe ocupe el contenedor */
+    border:0;
+    border-radius: 15px; /* Duplicado para asegurar el redondeo en el iframe */
 }
 
+/* Spinner de carga para el mapa */
+.loading-spinner {
+    font-size: 1.2em;
+    color: #555;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Contenedor de Filtros */
 .filtros-container {
-  background-color: white;
-  border: 2px solid #a8d0e6; /* Un verde azulado para el borde */
-  border-radius: 15px;
-  display: inline-block;
-  padding: 15px 20px;
-  text-align: left;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: white;
+    border: 1px solid #cce7f0; /* Un azul muy suave para el borde */
+    border-radius: 15px;
+    display: inline-block; /* Para que el ancho se ajuste al contenido */
+    padding: 15px 25px; /* Más padding horizontal */
+    text-align: left;
+    margin-bottom: 25px; /* Más espacio debajo */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Sombra más sutil */
 }
 
 .filtro-item {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
+    display: flex;
+    align-items: center;
+    margin: 12px 0; /* Espacio vertical entre ítems */
+}
+
+.filtro-item input[type="radio"] {
+    /* Ocultar el radio button nativo y estilizar el label */
+    display: none;
 }
 
 .filtro-label {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer; /* Para que parezca interactivo */
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #555; /* Un gris más oscuro para el texto */
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.filtro-label:hover {
+    color: #00897b; /* Cambia de color al pasar el mouse */
+}
+
+.filtro-item input[type="radio"]:checked + .filtro-label {
+    color: #00897b; /* Color cuando está seleccionado */
 }
 
 .color-box {
-  width: 20px;
-  height: 20px;
-  border-radius: 5px;
-  margin-right: 10px;
+    width: 22px; /* Ligeramente más grande */
+    height: 22px; /* Ligeramente más grande */
+    border-radius: 6px; /* Ligeramente más redondeado */
+    margin-right: 12px;
+    border: 1px solid rgba(0,0,0,0.1); /* Borde sutil para los color-box */
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.05); /* Sombra interna sutil */
 }
 
+/* Estilos de color para las cajas */
 .color-box.camion {
-  background-color: black;
+    background-color: #333; /* Negro oscuro */
 }
 
 .color-box.contenedor {
-  background-color: #9e9e9e; /* Gris */
+    background-color: #9e9e9e; /* Gris */
 }
 
 .color-box.lleno {
-  background-color: #ef5350; /* Rojo */
+    background-color: #ef5350; /* Rojo vibrante */
 }
 
+/* Botón Buscar */
 .btn-buscar {
-  background-color: #00897b; /* Verde azulado para el botón */
-  color: white;
-  border: none;
-  padding: 12px 40px;
-  font-size: 18px;
-  border-radius: 25px;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  transition: background-color 0.3s ease;
-  display: block; /* Para que ocupe todo el ancho disponible y podamos centrarlo con margin */
-  margin: 20px auto 0 auto; /* Margen superior e inferior, y auto a los lados para centrar */
-  width: fit-content; /* Ajusta el ancho al contenido del botón */
+    background-color: #00897b; /* Verde azulado */
+    color: white;
+    border: none;
+    padding: 14px 50px; /* Más padding para un botón más grande */
+    font-size: 19px; /* Fuente ligeramente más grande */
+    border-radius: 30px; /* Más redondeado */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra más pronunciada */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    display: block;
+    margin: 20px auto 0 auto;
+    width: fit-content;
+    font-weight: bold;
+    letter-spacing: 0.5px; /* Espaciado entre letras */
 }
 
 .btn-buscar:hover {
-  background-color: #00695c;
+    background-color: #00695c;
+    transform: translateY(-2px); /* Efecto de "levantar" */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25); /* Sombra al pasar el mouse */
 }
 
-/* Menú lateral (sin cambios importantes para la apariencia) */
+.btn-buscar:active {
+    transform: translateY(0); /* Efecto de "presionar" */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+/* Menú Lateral (Sidebar) */
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: -260px;
-  width: 240px;
-  height: 100%;
-  background-color: white;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  border: 2px solid orange;
-  border-left: none;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  transition: 0.3s ease;
-  z-index: 1000;
-  padding-top: 20px;
+    position: fixed;
+    top: 0;
+    left: -260px; /* Esconder fuera de la pantalla */
+    width: 240px;
+    height: 100%;
+    background-color: #ffffff; /* Fondo blanco */
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: 1px solid #cce7f0; /* Borde suave, no naranja */
+    border-left: none; /* Sin borde a la izquierda */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.15); /* Sombra más fuerte */
+    transition: left 0.3s ease-in-out; /* Animación más suave */
+    z-index: 1000;
+    padding-top: 20px;
+    display: flex; /* Para organizar el contenido internamente */
+    flex-direction: column;
 }
 
 .sidebar.active {
-  left: 0;
+    left: 0; /* Mostrar sidebar */
 }
 
 .perfil-box {
-  text-align: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+    text-align: center;
+    padding: 15px; /* Más padding */
+    border-bottom: 1px solid #e0e0e0; /* Separador más suave */
+    margin-bottom: 15px;
 }
 
 .avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+    width: 60px; /* Avatar más grande */
+    height: 60px; /* Avatar más grande */
+    border-radius: 50%;
+    border: 2px solid #00897b; /* Borde de color de acento */
+    object-fit: cover; /* Asegura que la imagen se ajuste bien */
 }
 
 .perfil-box span {
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
-  color: #333;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #444; /* Color de texto más suave */
+    font-size: 1.1em;
 }
 
 .menu-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Reinicia el margen */
+    flex-grow: 1; /* Permite que la lista ocupe el espacio restante */
 }
 
 .menu-list li {
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  font-size: 15px;
-  cursor: pointer;
-  color: #222;
-  transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px; /* Más padding */
+    font-size: 16px; /* Fuente ligeramente más grande */
+    cursor: pointer;
+    color: #444;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .menu-list li:hover {
-  background-color: #f0f0f0;
+    background-color: #f0f0f0; /* Fondo más claro al pasar el mouse */
+    color: #00897b; /* Color de texto de acento al pasar el mouse */
 }
 
 .menu-list li img {
-  width: 24px;
-  margin-right: 12px;
+    width: 26px; /* Iconos ligeramente más grandes */
+    margin-right: 15px; /* Más espacio */
+    filter: grayscale(100%); /* Desaturar iconos por defecto */
+    transition: filter 0.2s ease;
+}
+
+.menu-list li:hover img {
+    filter: grayscale(0%); /* Color original al pasar el mouse */
+}
+
+
+/* Media Queries para Responsividad (ejemplos) */
+@media (max-width: 768px) {
+    .contenido {
+        width: 95%;
+        padding: 15px;
+    }
+    .mapa-container {
+        height: 200px; /* Ajuste para pantallas más pequeñas */
+    }
+    .btn-buscar {
+        padding: 12px 40px;
+        font-size: 17px;
+    }
+    .menu-top {
+        padding: 10px 15px;
+    }
+    .titulo {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenido {
+        padding: 10px;
+        margin-top: 15px;
+    }
+    .mapa-container {
+        height: 180px;
+        margin: 15px auto;
+    }
+    .filtros-container {
+        padding: 10px 15px;
+        margin-bottom: 15px;
+    }
+    .filtro-item {
+        margin: 8px 0;
+    }
+    .btn-buscar {
+        padding: 10px 30px;
+        font-size: 16px;
+    }
+    .sidebar {
+        width: 200px; /* Ancho más pequeño para móviles */
+    }
+    .perfil-box {
+        padding: 10px;
+    }
+    .avatar {
+        width: 50px;
+        height: 50px;
+    }
+    .menu-list li {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    .menu-list li img {
+        width: 22px;
+        margin-right: 10px;
+    }
 }
