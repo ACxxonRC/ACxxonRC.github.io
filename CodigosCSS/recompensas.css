@@ -1,7 +1,17 @@
+/*
+    recompensas.css
+    Este archivo contiene los estilos para la página de recompensas.
+    Incluye estilos generales, de la barra lateral, los elementos de recompensa,
+    y las ventanas emergentes de cupones, con ajustes responsivos para móvil.
+*/
+
+/* --- Estilos Generales del Cuerpo --- */
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background-color: #a8d0e6;
+    /* Evita el scroll horizontal no deseado, fundamental para móvil */
+    overflow-x: hidden;
 }
 
 .dashboard {
@@ -9,6 +19,7 @@ body {
     text-align: center;
 }
 
+/* --- Barra Superior del Menú --- */
 .menu-top {
     display: flex;
     justify-content: space-between;
@@ -17,6 +28,9 @@ body {
     padding: 10px 20px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    /* Asegura que el padding no cause desbordamiento */
+    box-sizing: border-box;
+    width: 100%; /* Ocupa todo el ancho */
 }
 
 .menu-icon {
@@ -24,26 +38,26 @@ body {
     cursor: pointer;
 }
 
-/* Sidebar nuevo */
+/* --- Barra Lateral (Sidebar) --- */
 .sidebar {
     position: fixed;
     top: 0;
-    left: -260px;
-    width: 240px;
+    left: -260px; /* Oculto por defecto */
+    width: 240px; /* Ancho fijo para el sidebar */
     height: 100%;
     background-color: white;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border: 2px solid orange;
-    border-left: none;
+    border-left: none; /* Sin borde a la izquierda */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: 0.3s ease;
-    z-index: 1000;
+    transition: 0.3s ease; /* Transición suave para abrir/cerrar */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
     padding-top: 20px;
 }
 
 .sidebar.active {
-    left: 0;
+    left: 0; /* Visible cuando está activo */
 }
 
 .perfil-box {
@@ -90,26 +104,30 @@ body {
     margin-right: 12px;
 }
 
+/* --- Contenedor Principal de la Lista de Recompensas --- */
 .container-rewards {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Centra los elementos horizontalmente */
     margin-top: 20px;
-    max-width: 600px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 600px; /* Ancho máximo para el contenedor principal */
+    width: 90%; /* Ocupa el 90% del ancho disponible */
+    margin-left: auto; /* Centra el contenedor */
+    margin-right: auto; /* Centra el contenedor */
     text-align: center;
+    box-sizing: border-box; /* Importante para que el padding no desborde */
 }
 
 .rewards-list {
-    max-width: 600px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px; /* Espacio entre los cupones */
+    width: 100%; /* Ocupa todo el ancho de su contenedor (.container-rewards) */
+    max-width: 400px; /* Para que los cupones no se vean excesivamente anchos en escritorio */
 }
 
+/* --- Estilo del Cupón Individual --- */
 .reward-item {
     border-radius: 10px;
     padding: 0;
@@ -118,40 +136,55 @@ body {
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    width: 100%; /* Hace que el cupón ocupe todo el ancho disponible en la lista */
+    box-sizing: border-box;
 }
 
 .coupon-green {
     background-image: url('/imagenes/imgInsignias/cupon.png');
-    background-size: 100% 100%;
+    background-size: 100% 100%; /* Ajusta la imagen de fondo para cubrir todo el elemento */
     background-position: center;
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
     color: #333;
-    padding: 15px;
+    padding: 0; /* Quitamos el padding aquí y lo manejamos en .coupon-content */
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
+    justify-content: flex-start; /* Alinea el contenido al inicio */
     overflow: hidden;
     border-radius: 10px;
-    width: 331px;
-    height: 147px;
+    width: 100%; /* OCUPA EL 100% DEL ANCHO DEL reward-item */
+    height: 147px; /* Altura fija para que la imagen de fondo se vea completa */
     cursor: pointer;
+    box-sizing: border-box;
+    flex-wrap: nowrap; /* Evita que el contenido se salte de línea */
+    min-height: 100px; /* Altura mínima para asegurar que el contenido no se comprima demasiado */
 }
 
 .coupon-content {
     display: flex;
-    align-items: center;
+    align-items: center; /* Centra verticalmente logo y detalles del cupón */
+    /* Este padding ahora necesita ajustarse para dejar espacio visual a la izquierda del logo */
+    padding-left: 30px; /* Incrementa/Decrementa este valor para empujar el logo más hacia la derecha/izquierda */
+    padding-right: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    /* Usar space-between para empujar el logo y el texto a los extremos de su espacio */
+    justify-content: space-between; /* Mueve el logo a la izquierda y el texto a la derecha de forma flexible */
 }
 
 .reward-logo-coupon {
-    width: 60px;
-    height: 60px;
+    width: 60px; /* Ancho fijo para el logo */
+    min-width: 60px; /* Asegura que no se haga más pequeño */
+    height: 60px; /* Altura fija para el logo */
     border-radius: 50%;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    margin-right: 10px;
-    margin-left: 10px;
+    /* Quita el margin-right, ya que justify-content: space-between lo manejará */
+    margin-right: 0;
+    flex-shrink: 0; /* Evita que el logo se encoja */
 }
 
 .reward-logo-coupon img {
@@ -159,17 +192,28 @@ body {
     max-height: 100%;
     width: auto;
     height: auto;
+    display: block; /* Elimina espacio extra debajo de la imagen */
 }
 
 .reward-details-coupon {
-    flex-grow: 1;
+    flex-grow: 1; /* Permite que este elemento ocupe todo el espacio restante */
+    /* Centra el texto horizontalmente dentro de su propio contenedor */
+    text-align: center;
+    display: flex; /* Convierte este contenedor en un flex container */
+    flex-direction: column; /* Apila el contenido si hay más de una línea de texto */
+    justify-content: center; /* Centra verticalmente el texto */
+    align-items: center; /* Centra horizontalmente el texto (si es una sola línea) */
+    padding-left: 10px; /* Añade un poco de padding para que el texto no se pegue al logo */
 }
 
 .reward-title-coupon {
     font-size: 16px;
     font-weight: bold;
-    padding-left: 60px;
-    border-color: #222;
+    color: #333; /* Aseguramos un color de texto oscuro */
+    word-wrap: break-word; /* Permite que el texto largo se rompa en varias líneas */
+    white-space: normal; /* Asegura que el texto se envuelva */
+    max-width: 100%; /* Asegura que no se salga de su contenedor */
+    line-height: 1.2; /* Ajusta el espaciado entre líneas si el texto ocupa varias */
 }
 
 .reward-button {
@@ -182,13 +226,14 @@ body {
     font-size: 16px;
     transition: background-color 0.3s ease;
     margin-left: 15px;
+    flex-shrink: 0; /* Evita que el botón se encoja */
 }
 
 .reward-button:hover {
     background-color: #29b6f6;
 }
 
-/* Estilos para la ventana emergente */
+/* --- Estilos para la Ventana Emergente de Cupón (Detalle) --- */
 .coupon-popup {
     display: none; /* Inicialmente oculta */
     position: fixed; /* Se mantiene en la ventana */
@@ -198,8 +243,10 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
     z-index: 1001; /* Asegura que esté por encima de otros elementos */
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
 }
 
 .popup-content {
@@ -208,9 +255,11 @@ body {
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    max-width: 90%;
-    max-height: 90%;
-    overflow-y: auto; /* Para contenido largo */
+    max-width: 95%; /* Aumentamos un poco el ancho máximo para más espacio al código de barras */
+    width: auto; /* El ancho se ajustará al contenido */
+    max-height: 90vh; /* Ocupa como máximo el 90% de la altura del viewport */
+    overflow-y: auto;
+    box-sizing: border-box; /* Asegura que el padding esté incluido en el ancho */
 }
 
 .popup-logo {
@@ -221,7 +270,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px auto;
+    margin: 15px auto; /* Centra el logo */
     background-color: #fff;
 }
 
@@ -238,11 +287,29 @@ body {
 .popup-description {
     font-size: 18px;
     margin-bottom: 15px;
+    word-wrap: break-word; /* Asegura que las descripciones largas se ajusten */
+}
+
+.popup-expiration {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.popup-barcode {
+    width: 100%; /* Ocupa todo el ancho disponible del pop-up */
+    padding: 0 5px; /* Reducimos el padding horizontal para dar más espacio al código de barras */
+    box-sizing: border-box;
+    text-align: center; /* Centra la imagen si es más pequeña */
+    overflow-x: auto; /* Permite el scroll horizontal si el código es muy ancho */
 }
 
 .popup-barcode img {
-    width: 475px;
-    height: 140px;
+    width: auto; /* El código de barras ocupará su ancho real */
+    max-width: 100%; /* No excederá el 100% del ancho de su contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina espacio extra debajo de la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
     margin-bottom: 20px;
 }
 
@@ -261,7 +328,7 @@ body {
     background-color: #c82333;
 }
 
-/* Estilos para la ventana emergente de nuevo cupón por puntos */
+/* --- Estilos para la Ventana Emergente de Nuevo Cupón por Puntos --- */
 #new-coupon-popup {
     display: none;
     position: fixed;
@@ -280,16 +347,20 @@ body {
     padding: 20px;
     border-radius: 8px;
     text-align: center;
+    max-width: 90%; /* Limita el ancho del pop-up */
+    box-sizing: border-box;
 }
 
 #new-coupon-title {
     color: #007bff;
     margin-bottom: 10px;
+    word-wrap: break-word;
 }
 
 #new-coupon-description {
     font-size: 16px;
     margin-bottom: 15px;
+    word-wrap: break-word;
 }
 
 #close-new-coupon {
@@ -306,3 +377,8 @@ body {
 #close-new-coupon:hover {
     background-color: #218838;
 }
+
+/* --- Media Queries para Teléfonos */
+/* No se define un media query específico para "teléfonos" aquí,
+   pero los estilos de "popup-barcode" ya están optimizados para
+   pantallas pequeñas gracias a max-width: 100% y overflow-x: auto. */
