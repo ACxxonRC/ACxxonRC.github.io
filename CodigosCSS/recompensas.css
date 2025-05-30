@@ -144,47 +144,44 @@ body {
     background-image: url('/imagenes/imgInsignias/cupon.png');
     background-size: 100% 100%; /* Ajusta la imagen de fondo para cubrir todo el elemento */
     background-position: center;
-    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+    background-repeat: no-repeat;
     color: #333;
-    padding: 0; /* Quitamos el padding aquí y lo manejamos en .coupon-content */
-    display: flex;
-    align-items: center; /* Alinea los elementos verticalmente en el centro */
-    justify-content: flex-start; /* Alinea el contenido al inicio */
+    padding: 0;
+    display: flex; /* Mantenemos flex para el logo a la izquierda */
+    align-items: center;
+    justify-content: flex-start; /* Alinea el logo al inicio */
     overflow: hidden;
     border-radius: 10px;
-    width: 100%; /* OCUPA EL 100% DEL ANCHO DEL reward-item */
-    height: 147px; /* Altura fija para que la imagen de fondo se vea completa */
+    width: 100%;
+    height: 147px; /* Altura fija del cupón para la imagen de fondo */
     cursor: pointer;
     box-sizing: border-box;
-    flex-wrap: nowrap; /* Evita que el contenido se salte de línea */
-    min-height: 100px; /* Altura mínima para asegurar que el contenido no se comprima demasiado */
+    position: relative; /* Importante: Establece un contexto para el posicionamiento absoluto */
+    flex-wrap: nowrap;
+    min-height: 100px;
 }
 
 .coupon-content {
     display: flex;
-    align-items: center; /* Centra verticalmente logo y detalles del cupón */
-    /* Este padding ahora necesita ajustarse para dejar espacio visual a la izquierda del logo */
-    padding-left: 30px; /* Incrementa/Decrementa este valor para empujar el logo más hacia la derecha/izquierda */
-    padding-right: 20px;
+    align-items: center; /* Centra verticalmente el logo */
+    padding-left: 20px; /* Mantiene el espacio a la izquierda del logo */
     width: 100%;
     box-sizing: border-box;
-    /* Usar space-between para empujar el logo y el texto a los extremos de su espacio */
-    justify-content: space-between; /* Mueve el logo a la izquierda y el texto a la derecha de forma flexible */
+    justify-content: flex-start; /* Asegura que el logo se quede a la izquierda */
 }
 
 .reward-logo-coupon {
-    width: 60px; /* Ancho fijo para el logo */
-    min-width: 60px; /* Asegura que no se haga más pequeño */
-    height: 60px; /* Altura fija para el logo */
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    /* Quita el margin-right, ya que justify-content: space-between lo manejará */
-    margin-right: 0;
-    flex-shrink: 0; /* Evita que el logo se encoja */
+    flex-shrink: 0;
+    z-index: 1; /* Asegura que el logo esté por encima del fondo del texto */
 }
 
 .reward-logo-coupon img {
@@ -192,28 +189,29 @@ body {
     max-height: 100%;
     width: auto;
     height: auto;
-    display: block; /* Elimina espacio extra debajo de la imagen */
+    display: block;
 }
 
 .reward-details-coupon {
-    flex-grow: 1; /* Permite que este elemento ocupe todo el espacio restante */
-    /* Centra el texto horizontalmente dentro de su propio contenedor */
-    text-align: center;
-    display: flex; /* Convierte este contenedor en un flex container */
-    flex-direction: column; /* Apila el contenido si hay más de una línea de texto */
-    justify-content: center; /* Centra verticalmente el texto */
-    align-items: center; /* Centra horizontalmente el texto (si es una sola línea) */
-    padding-left: 10px; /* Añade un poco de padding para que el texto no se pegue al logo */
+    position: absolute; /* Posicionamiento absoluto respecto a .coupon-green */
+    left: 40%; /* Ajusta esta propiedad para mover el texto a la derecha o izquierda */
+    top: 50%; /* Centra verticalmente el texto */
+    transform: translateY(-50%); /* Ajuste fino para centrarlo verticalmente */
+    width: 55%; /* Limita el ancho del texto para que no se extienda demasiado */
+    text-align: left; /* Alinea el texto a la izquierda dentro de su área */
+    box-sizing: border-box;
+    padding-right: 10px; /* Pequeño padding para que el texto no se pegue al borde derecho */
+    /*z-index: 0; /* Asegura que el texto no tape el logo si se superpone */
 }
 
 .reward-title-coupon {
     font-size: 16px;
     font-weight: bold;
-    color: #333; /* Aseguramos un color de texto oscuro */
-    word-wrap: break-word; /* Permite que el texto largo se rompa en varias líneas */
-    white-space: normal; /* Asegura que el texto se envuelva */
-    max-width: 100%; /* Asegura que no se salga de su contenedor */
-    line-height: 1.2; /* Ajusta el espaciado entre líneas si el texto ocupa varias */
+    color: #333;
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+    line-height: 1.2;
 }
 
 .reward-button {
@@ -379,6 +377,4 @@ body {
 }
 
 /* --- Media Queries para Teléfonos */
-/* No se define un media query específico para "teléfonos" aquí,
-   pero los estilos de "popup-barcode" ya están optimizados para
-   pantallas pequeñas gracias a max-width: 100% y overflow-x: auto. */
+/* Los estilos ya están optimizados para pantallas pequeñas en general */
